@@ -8,28 +8,43 @@ public class thirdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
+    public static Risorse resources;
 
     public float speed = 6f;
 
     public float turnSMoothTime = 0.1f;
     float turnSmoothVelocity;
 
+    
+
+    void Start()
+    {
+        resources = new Risorse(100);
+    }
+
     // Update is called once per frame
     void Update()
     {
         movements();
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("e") && resources.Risorsa > 20)
         {
             this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            resources.Risorsa -= 20;
+            this.transform.localPosition -= new Vector3(0, 0.1f, 0);
+            Debug.Log(resources.Risorsa);
         }
     }
 
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("cube"))
+        if (other.CompareTag("cube") && resources.Risorsa < resources.MaxHealth)
         {
 
             this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            resources.Risorsa += 20;
+            this.transform.localPosition += new Vector3(0, 0.1f, 0);
+            Debug.Log(resources.Risorsa);
 
         }
     }

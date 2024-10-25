@@ -2229,6 +2229,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 366864167}
     m_Modifications:
+    - target: {fileID: 1152478937282519325, guid: 9028cfc76a9b62d4aaa60a2e5b11d640, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.865
+      objectReference: {fileID: 0}
     - target: {fileID: 5136138014153628229, guid: 9028cfc76a9b62d4aaa60a2e5b11d640, type: 3}
       propertyPath: m_Name
       value: Cylinder
