@@ -6,6 +6,7 @@ TagManager:
   tags:
   - obstacles
   - cube
+  - Spada
   layers:
   - Default
   - TransparentFX
