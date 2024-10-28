@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300394508}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017397635, y: 0.98258257, z: -0.13393432, w: 0.1276343}
+  m_LocalRotation: {x: 0.017397668, y: 0.98258257, z: -0.1339347, w: 0.12763414}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -473,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436861177}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0128001915, y: 0.9867606, z: -0.09854126, w: 0.12817702}
+  m_LocalRotation: {x: 0.012800254, y: 0.98676056, z: -0.09854174, w: 0.128177}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -747,6 +747,63 @@ MonoBehaviour:
   m_Damping: 0.6
   m_DampingWhenOccluded: 0.6
   m_OptimalTargetDistance: 0
+--- !u!1001 &764199372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.68459177
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.905154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
+      propertyPath: m_Name
+      value: Sword And Shield Slash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 634af9427e211f445a0f8409f8378fd9, type: 3}
 --- !u!1 &786783077
 GameObject:
   m_ObjectHideFlags: 3
@@ -945,7 +1002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800186352}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015098444, y: 0.98483324, z: -0.11623391, w: 0.12792696}
+  m_LocalRotation: {x: 0.015098562, y: 0.98483306, z: -0.11623467, w: 0.12792711}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1354,7 +1411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11721043, y: -0.00000019456287, z: 0.00000002296308, w: 0.99310714}
+  m_LocalRotation: {x: 0.1172112, y: -0.0000003588862, z: 0.00000004235745, w: 0.9931071}
   m_LocalPosition: {x: 0, y: 6.11, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2455,3 +2512,4 @@ SceneRoots:
   - {fileID: 1941535629}
   - {fileID: 1404051795}
   - {fileID: 368864078422827332}
+  - {fileID: 764199372}
