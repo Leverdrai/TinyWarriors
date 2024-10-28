@@ -20,6 +20,7 @@ public class thirdPersonMovement : MonoBehaviour
     void Start()
     {
         resources = new Risorse(100);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
