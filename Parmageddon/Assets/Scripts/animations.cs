@@ -5,8 +5,9 @@ using UnityEngine;
 public class animations : MonoBehaviour
 {
 
-    public GameObject character;
+
     public Animator CharacterAnimatore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +19,42 @@ public class animations : MonoBehaviour
     {
         if (Input.GetKeyDown("g"))
         {
-            character.GetComponent<Animator>().Play("Attack");
-        }
-       
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            CharacterAnimatore.SetBool("isAttacking", true);
+        } 
+
+        if (thirdPersonMovement.movement.magnitude >= 0.1f)
         {
-            CharacterAnimatore.SetBool("move", true);
+            CharacterAnimatore.SetBool("isWalking", true);
         }
-        if (Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.S) == false && Input.GetKey(KeyCode.D) == false)
+        else 
         {
-            CharacterAnimatore.SetBool("move", false);
+            CharacterAnimatore.SetBool("isWalking", false);
         }
+        //Debug.Log(thirdPersonMovement.speed);
+    }
+
+    public void movementStop()
+    {
+        if(CharacterAnimatore.GetBool("isAttacking") == true)
+        {
+            thirdPersonMovement.speed = 0;
+            thirdPersonMovement.turnSMoothTime = 1000;
+        }
+        
+    }
+
+
+    public void movementStart()
+    {
+        if(CharacterAnimatore.GetBool("isAttacking") == false)
+        {
+            thirdPersonMovement.speed = 6f;
+            thirdPersonMovement.turnSMoothTime = 0.1f;
+        }
+    }
+    public void attackOff()
+    {
+
+        CharacterAnimatore.SetBool("isAttacking", false);
     }
 }

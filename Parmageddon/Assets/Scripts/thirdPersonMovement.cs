@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class thirdPersonMovement : MonoBehaviour
 {
@@ -10,30 +11,39 @@ public class thirdPersonMovement : MonoBehaviour
     public Transform cam;
     public static Risorse resources;
 
-    public float speed = 6f;
+    public static float speed = 6f;
 
-    public float turnSMoothTime = 0.1f;
+    public static float turnSMoothTime = 0.1f;
     float turnSmoothVelocity;
+
+    public static Vector3 movement;
+
+    public float gravity = -9.81f;
+    public bool isGrounded;
+    private Vector3 velocity;
 
     
 
     void Start()
     {
         resources = new Risorse(100);
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movements();
-        if (Input.GetKeyDown("e") && resources.Risorsa > 20)
+        spawnParts();
+
+        isGrounded = controller.isGrounded;
+        if(isGrounded && velocity.y < 0)
         {
-            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-            resources.Risorsa -= 20;
-            this.transform.localPosition -= new Vector3(0, 0.1f, 0);
-            Debug.Log(resources.Risorsa);
+            velocity.y = -2f;
         }
+        velocity.y += gravity* Time.deltaTime;
+        
+       controller.Move(velocity*Time.deltaTime);
     }
 
 
@@ -49,12 +59,24 @@ public class thirdPersonMovement : MonoBehaviour
 
         }
     }
-    void movements()
+
+    public void spawnParts()
+    {
+        if (Input.GetKeyDown("e") && resources.Risorsa > 20)
+        {
+            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            resources.Risorsa -= 20;
+            this.transform.localPosition -= new Vector3(0, 0.1f, 0);
+            Debug.Log(resources.Risorsa);
+        }
+    }
+
+    public void movements()
     {
         //get axis to move
         float HorizontalInput = Input.GetAxisRaw("Horizontal");
         float VerticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 movement = new Vector3(HorizontalInput, 0, VerticalInput).normalized;
+        movement = new Vector3(HorizontalInput, 0, VerticalInput).normalized;
 
         //check if is moving
         if (movement.magnitude >= 0.1f)

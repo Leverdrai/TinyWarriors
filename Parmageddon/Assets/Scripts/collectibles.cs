@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Collections : MonoBehaviour
 {
-    public static event Action OnCollected;
+  
     public GameObject oggetto;
 
 
