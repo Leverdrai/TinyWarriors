@@ -360,6 +360,7 @@
 "Assets/Scripts/animations.cs"
 "Assets/Scripts/Attacco.cs"
 "Assets/Scripts/collectibles.cs"
+"Assets/Scripts/perdiPezzi.cs"
 "Assets/Scripts/Risorse.cs"
 "Assets/Scripts/spawnPezzi.cs"
 "Assets/Scripts/thirdPersonMovement.cs"

@@ -34,7 +34,7 @@ public class thirdPersonMovement : MonoBehaviour
     void FixedUpdate()
     {
         movements();
-        spawnParts();
+        
 
         isGrounded = controller.isGrounded;
         if(isGrounded && velocity.y < 0)
@@ -60,16 +60,7 @@ public class thirdPersonMovement : MonoBehaviour
         }
     }
 
-    public void spawnParts()
-    {
-        if (Input.GetKeyDown("e") && resources.Risorsa > 20)
-        {
-            this.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
-            resources.Risorsa -= 20;
-            this.transform.localPosition -= new Vector3(0, 0.1f, 0);
-            Debug.Log(resources.Risorsa);
-        }
-    }
+   
 
     public void movements()
     {
