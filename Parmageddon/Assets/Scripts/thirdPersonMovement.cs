@@ -22,7 +22,15 @@ public class thirdPersonMovement : MonoBehaviour
     public bool isGrounded;
     private Vector3 velocity;
 
-    
+    // variabili per il groundcheck attraverso uno sphearcast
+    public float groundCheckRadius = 0.4f;
+    public LayerMask groundLayer;
+    public Transform groundCheckPosition;
+
+    // variabili per il roll
+    /*public float rollSpeed = 8f;
+    public float rollDuration = 3f;
+    private bool isRolling;*/
 
     void Start()
     {
@@ -33,18 +41,22 @@ public class thirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        movements();
         
 
-        isGrounded = controller.isGrounded;
-        if(isGrounded && velocity.y < 0)
+        CheckGroundStatus();
+
+        movements();
+
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-        velocity.y += gravity* Time.deltaTime;
-        
-       controller.Move(velocity*Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
+
+    
 
 
     void OnTriggerEnter(Collider other)
@@ -60,7 +72,16 @@ public class thirdPersonMovement : MonoBehaviour
         }
     }
 
-   
+    //check per il pavimento
+    void CheckGroundStatus()
+    {
+        isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundCheckRadius, groundLayer);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(groundCheckPosition.position, groundCheckRadius);
+    }
 
     public void movements()
     {
@@ -72,19 +93,21 @@ public class thirdPersonMovement : MonoBehaviour
         //check if is moving
         if (movement.magnitude >= 0.1f)
         {
-            //rotation                                                                 
+            //rotation                                                                             
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             //crea un angolo piu smooth di rotazione
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSMoothTime);
             //per applicare la rotazione usiamo lo smooth qui
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
             //actual movement
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+
+        // Inizia il dodge roll se il tasto Shift è premuto
+        
     }
 
+    
 
 }
