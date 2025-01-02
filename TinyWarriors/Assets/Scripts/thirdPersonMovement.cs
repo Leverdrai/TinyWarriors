@@ -35,7 +35,7 @@ public class thirdPersonMovement : MonoBehaviour
     void Start()
     {
         resources = new Risorse(100);
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -104,7 +104,7 @@ public class thirdPersonMovement : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
 
-        // Inizia il dodge roll se il tasto Shift è premuto
+        // Inizia il dodge roll se il tasto Shift ï¿½ premuto
         
     }
 
