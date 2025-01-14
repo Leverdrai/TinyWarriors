@@ -8,6 +8,7 @@ public class animations : MonoBehaviour
     public float rollSpeed = 8f;
     public float rollDuration = 1f;
     private bool isRolling = false;
+    public CharacterController collisore;
 
     public static Animator CharacterAnimatore;
 
@@ -15,12 +16,13 @@ public class animations : MonoBehaviour
     void Start()
     {
         CharacterAnimatore = GetComponent<Animator>();
+        collisore = GetComponentInParent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("g"))
+        if (Input.GetKeyDown("mouse 1"))
         {
             CharacterAnimatore.SetBool("isAttacking", true);
         } 
@@ -34,7 +36,7 @@ public class animations : MonoBehaviour
             CharacterAnimatore.SetBool("isWalking", false);
         }
         //Debug.Log(thirdPersonMovement.speed);
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("left shift"))
         {
             CharacterAnimatore.SetBool("isRolling", true);
             Roll();
@@ -79,17 +81,20 @@ public class animations : MonoBehaviour
         {
             controller.Move(direction * rollSpeed * Time.deltaTime);
             yield return null;
+            
         }
 
         isRolling = false;
+        
         animations.CharacterAnimatore.SetBool("isRolling", false);
     }
 
     public void Roll()
     {
-        // Inizia il dodge roll se il tasto Shift è premuto
+       
 
         isRolling = true;
+        animations.CharacterAnimatore.SetBool("isWalking", false);
         animations.CharacterAnimatore.SetBool("isRolling", true);
 
         // Calcola la direzione di movimento del roll
