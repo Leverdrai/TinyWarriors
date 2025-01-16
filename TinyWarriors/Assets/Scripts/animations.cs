@@ -8,7 +8,7 @@ public class animations : MonoBehaviour
     public float rollSpeed = 8f;
     public float rollDuration = 1f;
     private bool isRolling = false;
-    public CharacterController collisore;
+    public MonoBehaviour movimento;
 
     public static Animator CharacterAnimatore;
 
@@ -16,16 +16,19 @@ public class animations : MonoBehaviour
     void Start()
     {
         CharacterAnimatore = GetComponent<Animator>();
-        collisore = GetComponentInParent<CharacterController>();
+        movimento = GetComponentInParent<thirdPersonMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("mouse 1"))
-        {
+        {            
+            walkOff();
             CharacterAnimatore.SetBool("isAttacking", true);
-        } 
+
+        }
+        
 
         if (thirdPersonMovement.movement.magnitude >= 0.1f)
         {
@@ -41,12 +44,11 @@ public class animations : MonoBehaviour
             CharacterAnimatore.SetBool("isRolling", true);
             Roll();
         }
-        Debug.Log(isRolling);
     }
 
     public void movementStop()
     {
-        if(CharacterAnimatore.GetBool("isAttacking") == true)
+        if(CharacterAnimatore.GetBool("isAttacking"))
         {
             thirdPersonMovement.speed = 0;
             thirdPersonMovement.turnSMoothTime = 1000;
@@ -73,6 +75,18 @@ public class animations : MonoBehaviour
         CharacterAnimatore.SetBool("isRolling", false);
     }
 
+    public void walkOff()
+    {
+        CharacterAnimatore.SetBool("isWalking", false);
+        //movimento.enabled = false;
+    }
+
+    public void walkOn()
+    {
+        movimento.enabled = true;
+    }
+    
+    
     IEnumerator RollCoroutine(Vector3 direction)
     {
         float startTime = Time.time;
