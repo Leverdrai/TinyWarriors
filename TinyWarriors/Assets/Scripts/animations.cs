@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class animations : MonoBehaviour
@@ -39,7 +40,7 @@ public class animations : MonoBehaviour
             CharacterAnimatore.SetBool("isWalking", false);
         }
         //Debug.Log(thirdPersonMovement.speed);
-        if (Input.GetKeyDown("left shift"))
+        if (Input.GetKeyDown("left shift") && isRolling == false)
         {
             CharacterAnimatore.SetBool("isRolling", true);
             Roll();
@@ -89,18 +90,19 @@ public class animations : MonoBehaviour
     
     IEnumerator RollCoroutine(Vector3 direction)
     {
+        yield return new WaitForSeconds(0.15f);
         float startTime = Time.time;
 
         while (Time.time < startTime + rollDuration)
         {
             controller.Move(direction * rollSpeed * Time.deltaTime);
-            yield return null;
+            //yield return new WaitForEndOfFrame();
             
         }
-
-        isRolling = false;
-        
         animations.CharacterAnimatore.SetBool("isRolling", false);
+        //yield return new WaitForEndOfFrame();
+        isRolling = false;
+      
     }
 
     public void Roll()
