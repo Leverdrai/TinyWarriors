@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class animations : MonoBehaviour
 {
+    [SerializeField] Collider _collider;
+    
     public CharacterController controller;
     public float rollSpeed = 8f;
     public float rollDuration = 1f;
     private bool isRolling = false;
     public MonoBehaviour movimento;
 
+    private bool _isMooving;
+    
     public static Animator CharacterAnimatore;
 
     // Start is called before the first frame update
@@ -18,17 +22,21 @@ public class animations : MonoBehaviour
     {
         CharacterAnimatore = GetComponent<Animator>();
         movimento = GetComponentInParent<thirdPersonMovement>();
+        _collider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CharacterAnimatore.SetFloat("walkingSpeed", thirdPersonMovement.speed);
+        
         if (Input.GetKeyDown("mouse 1"))
         {            
-            walkOff();
+            
             CharacterAnimatore.SetBool("isAttacking", true);
 
         }
+        
         
 
         if (thirdPersonMovement.movement.magnitude >= 0.1f)
@@ -86,7 +94,16 @@ public class animations : MonoBehaviour
     {
         movimento.enabled = true;
     }
-    
+
+    public void colliderOn()
+    {
+        _collider.enabled = true;
+    }
+
+    public void colliderOff()
+    {
+        _collider.enabled = false;
+    }
     
     IEnumerator RollCoroutine(Vector3 direction)
     {
@@ -96,14 +113,15 @@ public class animations : MonoBehaviour
         while (Time.time < startTime + rollDuration)
         {
             controller.Move(direction * rollSpeed * Time.deltaTime);
-            //yield return new WaitForEndOfFrame();
+            yield return null;
             
         }
         animations.CharacterAnimatore.SetBool("isRolling", false);
-        //yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
         isRolling = false;
       
     }
+
 
     public void Roll()
     {
